@@ -15,5 +15,5 @@ Requisitos:
 }
 
 Aclaracion importante! 
-No se requiere conexion con base de datos... el repositorio de datos puede ser un archivo local, por ejemplo, productos.json y debe ser leido y modificado desde el modelo de la entidad.
-4) En el frontend es valido utilizar simplemente una tabla html. El renderizado debe hacerse mediante javascript y el bindeo para eliminar y modificar se debe hacer mediante data attributes del DOM utilizando jquery o javascrip vanilla (es optativo).
+No se requiere conexión con base de datos... el repositorio de datos puede ser un archivo local, por ejemplo, productos.json y debe ser leido y modificado desde el modelo de la entidad.
+4) En el frontend es valido utilizar simplemente una tabla html. El renderizado debe hacerse mediante javascript y el bindeo para eliminar y modificar se debe hacer mediante data attributes del DOM utilizando jquery o javascript vanilla (es optativo).
