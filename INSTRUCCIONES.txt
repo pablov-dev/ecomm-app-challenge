@@ -1,0 +1,19 @@
+/* INSTRUCCIONES PARA EL CHALLENGE TÉCNICO DE ECOMM-APP */
+
+En este desafío técnico se busca lograr un CRUD basico de una sóla entidad (Producto). 
+
+Requisitos:
+1) Una vez clonado el repositorio en el entorno local se debe crear una nueva rama de trabajo con git, por ejemplo, si tu nombre es Juan Martinez podes crear la rama juan-martinez para realizar el codeo del challenge en la misma.
+2) El CRUD debe ser desarrollado bajo el patrón MVC (modelo-vista-controlador)
+3) La entidad la cual hay que crear, consultar, modificar o eliminar se llama producto y tiene la siguiente estructura:
+
+{
+    id: 1,
+    title: "Producto del Challenge",
+    price: 2000,
+    created_at: "2022-12-13 10:41"
+}
+
+Aclaracion importante! 
+No se requiere conexion con base de datos... el repositorio de datos puede ser un archivo local, por ejemplo, productos.json y debe ser leido y modificado desde el modelo de la entidad.
+4) En el frontend es valido utilizar simplemente una tabla html. El renderizado debe hacerse mediante javascript y el bindeo para eliminar y modificar se debe hacer mediante data attributes del DOM utilizando jquery o javascrip vanilla (es optativo).
