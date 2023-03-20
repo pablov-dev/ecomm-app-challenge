@@ -1,0 +1,16 @@
+@import url("normalize.css");
+@import url("layout.css");
+@import url("formControls.css");
+@import url("scrollbar.css");
+@import url("links.css");
+@import url("table.css");
+@import url("panel.css");
+
+:root {
+    --containers-max-width:         1366px;
+    --containers-side-padding:      10px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
