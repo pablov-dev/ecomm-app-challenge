@@ -2,6 +2,13 @@
 
 defined("BASEPATH") OR exit("No direct script access allowed");
 
+/**
+ * Evitar advertencias de Intelliphense
+ * 
+ * @property Producto_Model $Producto_Model
+ * @property input $input
+ */
+
 class Producto extends CI_Controller
 {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -12,12 +19,10 @@ class Producto extends CI_Controller
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function listado()
 	{
-        $this->load->model("Producto_Model");
-        
-        $producto = new Producto_Model();
-        $producto->create_file();
-        
-        $productos = $producto->get_data();
+        $this->load->model('Producto_Model');
+
+        $this->Producto_Model->create_file();
+        $productos = $this->Producto_Model->get_data();
         
 		$this->load->view("listado", ["productos" => $productos]);
 	}
@@ -27,16 +32,15 @@ class Producto extends CI_Controller
         if($this->input->post("title") && $this->input->post("price") && is_numeric($this->input->post("price")))
         {
             $this->load->model("Producto_Model");
-            $producto = new Producto_Model();
             
             $data = [
-                "id"            => $producto->getLastId() + 1,
+                "id"            => $this->Producto_Model->getLastId() + 1,
                 "title"         => $this->input->post("title"),
                 "price"         => $this->input->post("price"),
                 "created_at"    => date("Y-m-d H:i:s"),
             ];
 
-            $producto->insert_data($data);
+            $this->Producto_Model->insert_data($data);
             redirect("producto/index","refresh");
         }
         else
@@ -47,29 +51,32 @@ class Producto extends CI_Controller
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function update()
 	{
-        if($this->input->post("id") && $this->input->post("title") && $this->input->post("price"))
-        {
-            $this->load->model("Producto_Model");
-            $producto = new Producto_Model();
-            
-            $data = [
-                "title"         => $this->input->post("title"),
-                "price"         => $this->input->post("price"),
-            ];
+        //=========================================================================================================//
+        // Método que actualiza la información de un artículo o muestra la página para realizar las modificaciones //
+        //=========================================================================================================//
 
-            $producto->update($this->input->post("id"), $data);
+        if($this->input->post("id") && is_numeric($this->input->post("id")) && $this->input->post("title") && $this->input->post("price"))
+        {
+            $data = [
+                "title" => $this->input->post("title"),
+                "price" => $this->input->post("price"),
+            ];
+            
+            $this->load->model("Producto_Model");
+            $this->Producto_Model->update($this->input->post("id"), $data);
+
             redirect("producto/index","refresh");
         }
 
-        if($this->input->get("id"))
+        if($this->input->get("id") && is_numeric($this->input->get("id")))
         {
             $id = $this->input->get("id");
 
             $this->load->model("Producto_Model");
-            $producto = new Producto_Model();
-            if($producto->getLastId()>=$id)
+
+            if($this->Producto_Model->getLastId()>=$id)
             {
-                $data = $producto->find($id);
+                $data = $this->Producto_Model->find($id);
                 $this->load->view("update", ["producto" => $data]);
             }
             else
@@ -85,12 +92,14 @@ class Producto extends CI_Controller
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function delete()
 	{
-        if($this->input->get("id"))
+        //================================//
+        // Método que elimina un artículo //
+        //================================//
+
+        if($this->input->get("id") && is_numeric($this->input->get("id")))
         {
             $this->load->model("Producto_Model");
-            $producto = new Producto_Model();
-            
-            $producto->delete($this->input->get("id"));
+            $this->Producto_Model->delete($this->input->get("id"));
         }
         
         redirect("producto/index","refresh");

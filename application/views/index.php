@@ -14,7 +14,7 @@
     <body>
         <div class="main-container">
             <h1>Listado de productos</h1>
-            <button class="btn-primary" style="width: 200px;" onclick="window.location.href='<?=base_url('producto/create')?>'">Nuevo producto</button>
+            <button id="btn-nuevo" class="btn-primary" style="width: 200px;">Nuevo producto</button>
             <div id="container"></div>
         </div>
 
@@ -33,23 +33,26 @@
 
             $(document).ready(function()
             {
+                $('#btn-nuevo').click(function(e) {
+                    window.location.href = "<?=base_url('producto/create')?>";
+                });
+            });
+
+            $(document).ready(function()
+            {
                 $('#container').on('click', '.btn-editar', function(e) {
-                e.preventDefault();
-                
-                var data_id = $(this).data('id');
-                
-                window.location.href = "<?php echo base_url('producto/update'); ?>?id=" + data_id;
+                    window.location.href = "<?=base_url('producto/update')?>?id=" + $(this).data('id');
                 });
             });
 
             $(document).ready(function()
             {
                 $('#container').on('click', '.btn-eliminar', function(e) {
-                e.preventDefault();
-                
-                var data_id = $(this).data('id');
-                
-                window.location.href = "<?php echo base_url('producto/delete'); ?>?id=" + data_id;
+    
+                    let respuesta = confirm("Está seguro que desea eliminar el producto?");
+
+                    if(respuesta)
+                        window.location.href = "<?=base_url('producto/delete');?>?id=" + $(this).data('id');
                 });
             });
         </script>

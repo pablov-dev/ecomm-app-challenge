@@ -70,8 +70,10 @@ class Producto_Model extends CI_Model
         $json_data = json_decode(file_get_contents(JSON_FILE), true);
 
         // Buscar el producto con el id especificado
-        foreach ($json_data as $product) {
-            if ($product["id"] === $id) {
+        foreach($json_data as $product)
+        {
+            if($product["id"] === $id)
+            {
                 return $product;
                 break;
             }
@@ -92,15 +94,18 @@ class Producto_Model extends CI_Model
 
         // Buscar el índice del producto que se quiere actualizar
         $product_index = -1;
-        foreach ($json_data as $i => $product) {
-            if ($product["id"] === $id) {
+        foreach($json_data as $i => $product)
+        {
+            if($product["id"] === $id)
+            {
                 $product_index = $i;
                 break;
             }
         }
 
         // Si se encontró el producto, actualizar sus datos y guardarlos en el archivo JSON
-        if ($product_index >= 0) {
+        if($product_index >= 0)
+        {
             $json_data[$product_index] = array_merge($json_data[$product_index], $data);
             file_put_contents(JSON_FILE, json_encode($json_data));
         }
@@ -117,15 +122,18 @@ class Producto_Model extends CI_Model
         
         // Buscar el índice del producto que se quiere eliminar
         $product_index = -1;
-        foreach ($json_data as $i => $product) {
-            if ($product["id"] === $id) {
+        foreach($json_data as $i => $product)
+        {
+            if($product["id"] === $id)
+            {
                 $product_index = $i;
                 break;
             }
         }
 
         // Si se encontró el producto, eliminarlo del arreglo y guardar los cambios en el archivo JSON
-        if ($product_index >= 0) {
+        if($product_index >= 0)
+        {
             unset($json_data[$product_index]);
             $json_data = array_values($json_data); // reindexar el arreglo
             file_put_contents(JSON_FILE, json_encode($json_data));
