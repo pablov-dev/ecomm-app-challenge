@@ -14,11 +14,19 @@ class Producto extends CI_Controller
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
     public function index()
     {
+        //==========================================//
+        // Método que muestra la tabla de artículos //
+        //==========================================//
+
         $this->load->view("index");
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function listado()
 	{
+        //===================================================================//
+        // Método que carga la tabla de artículos mediante una petición Ajax //
+        //===================================================================//
+
         $this->load->model('Producto_Model');
 
         $this->Producto_Model->create_file();
@@ -29,6 +37,10 @@ class Producto extends CI_Controller
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function create()
 	{
+        //==========================================================================//
+        // Método que crea un nuevo artículo o muestra la página para poder crearlo //
+        //==========================================================================//
+
         if($this->input->post("title") && $this->input->post("price") && is_numeric($this->input->post("price")))
         {
             $this->load->model("Producto_Model");
@@ -43,10 +55,8 @@ class Producto extends CI_Controller
             $this->Producto_Model->insert_data($data);
             redirect("producto/index","refresh");
         }
-        else
-        {
-            $this->load->view("create");
-        }
+
+        $this->load->view("create");
 	}
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 	public function update()
