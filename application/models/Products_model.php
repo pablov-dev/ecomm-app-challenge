@@ -12,14 +12,14 @@ class Products_model extends CI_Model {
      */
     public function all() {
         // código para obtener los productos del json
-        return json_decode(file_get_contents(BASEPATH."/../Products.json"),true);
+        return json_decode(file_get_contents(BASEPATH."/../Products.json"));
     }
 
     /**
      * Al obtener el id en el parametro, solo buscamos en el archivo el producto
      */
     public function find($id) {
-        $products = json_decode(file_get_contents(BASEPATH."/../Products.json"),true);
+        $products = json_decode(file_get_contents(BASEPATH."/../Products.json"));
         $indexProducts = array_search($id,array_column($products,'id'));
         return $products[$indexProducts];
     }
