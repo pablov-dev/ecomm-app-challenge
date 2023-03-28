@@ -170,8 +170,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 addData.append('price', price);
                 var request = new XMLHttpRequest();
                 request.open('POST', 'http://127.0.0.1:8000/products/store');
+                request.onreadystatechange = function() {
+                    if (request.readyState == 4 && request.status == 200) {
+                        window.location.replace('http://127.0.0.1:8000/products');
+                    }
+                };
                 request.send(addData);
-                window.location.replace('http://127.0.0.1:8000/products');
             });
             $('.btn_edit').on('click', function() {
                 var product_id = $(this).data('product-id');
@@ -195,6 +199,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 editData.append('created_at', creado);
                 var request = new XMLHttpRequest();
                 request.open('POST', 'http://127.0.0.1:8000/products/update');
+                request.onreadystatechange = function() {
+                    if (request.readyState == 4 && request.status == 200) {
+                        window.location.replace('http://127.0.0.1:8000/products');
+                    }
+                };
                 request.send(editData);
                 window.location.replace('http://127.0.0.1:8000/products');
             });
@@ -214,6 +223,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 deleteData.append('id', id);
                 var request = new XMLHttpRequest();
                 request.open('POST', 'http://127.0.0.1:8000/products/delete/' + id);
+                request.onreadystatechange = function() {
+                    if (request.readyState == 4 && request.status == 200) {
+                        window.location.replace('http://127.0.0.1:8000/products');
+                    }
+                };
                 request.send(deleteData);
                 window.location.replace('http://127.0.0.1:8000/products');
             });
