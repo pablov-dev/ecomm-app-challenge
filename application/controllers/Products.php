@@ -19,53 +19,26 @@ class Products extends CI_Controller {
     }
 
     /**
-     * Detalles de un producto
-     */
-    public function show($id) {
-        $data['product'] = $this->Products_model->find($id);
-        $this->load->view('products/show', $data);
-        return $data;
-    }
-
-    /**
-     * Vista para crear un producto
-     */
-    public function create() {
-        $this->load->view('products/create');
-    }
-
-    /**
      * Almacenar un producto
      */
     public function store() {
-        $product = array(
-            'name' => $this->input->post('name'),
-            'description' => $this->input->post('description'),
+        $product = [
+            'title' => $this->input->post('title'),
             'price' => $this->input->post('price')
-        );
+        ];
         $this->Products_model->create($product);
-        redirect('products');
-    }
-
-    /**
-     * vista para editar un producto
-     */
-    public function edit($id) {
-        $data['product'] = $this->Products_model->find($id);
-        $this->load->view('products/edit', $data);
     }
 
     /**
      * Actualizar un producto
      */
     public function update() {
-        $product = array(
-            'name' => $this->input->post('name'),
-            'description' => $this->input->post('description'),
-            'price' => $this->input->post('price')
-        );
+        $product = [
+            'title' => $this->input->post('title'),
+            'price' => $this->input->post('price'),
+            'created_at' => $this->input->post('created_at')
+        ];
         $this->Products_model->update($this->input->post('id'), $product);
-        redirect('products');
     }
 
     /**
@@ -73,6 +46,5 @@ class Products extends CI_Controller {
      */
     public function delete($id) {
         $this->Products_model->delete($id);
-        redirect('products');
     }
 }
