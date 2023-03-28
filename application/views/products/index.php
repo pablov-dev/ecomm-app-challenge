@@ -205,7 +205,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     }
                 };
                 request.send(editData);
-                window.location.replace('http://127.0.0.1:8000/products');
             });
             $('.btn_delete').on('click', function() {
                 var product_id = $(this).data('product-id');
@@ -229,7 +228,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     }
                 };
                 request.send(deleteData);
-                window.location.replace('http://127.0.0.1:8000/products');
             });
         });
     </script>
