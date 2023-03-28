@@ -51,10 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['products'] = 'products/index';
-$route['products/(:num)'] = 'products/show/$1';
-$route['products/create'] = 'products/create';
-// $route['products/store'] = 'products/store';
-$route['products/edit/(:num)'] = 'products/edit/$1';
+$route['products/store'] = 'products/store';
 $route['products/update'] = 'products/update';
 $route['products/delete/(:num)'] = 'products/delete/$1';
 
