@@ -63,9 +63,10 @@ class Products_model extends CI_Model {
      */
     public function delete($id) {
         // código para eliminar un producto de json
-        $products = json_decode(file_get_contents(BASEPATH."/../Products.json"));
+        $products = json_decode(file_get_contents(BASEPATH."/../Products.json"),true);
         $indexProducts = array_search($id,array_column($products,'id'));
         unset($products[$indexProducts]);
+        $products = array_values($products);
         $productsUpdate = json_encode($products,JSON_PRETTY_PRINT);
         file_put_contents(BASEPATH."/../Products.json",$productsUpdate);
     }
